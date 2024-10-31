@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Diwali</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: #fff;
+        }
+
+        /* Full-screen video background */
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        /* Overlay for slightly darkening the video */
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: -1;
+        }
+
+        /* Container styles */
+        .container {
+            text-align: center;
+            max-width: 600px;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #ffde59;
+            text-shadow: 0 0 10px #ffde59;
+            animation: sparkle 1s infinite alternate;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #ffb3b3;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            color: #0b032d;
+            background-color: #ffde59;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #ffc107;
+        }
+
+        .message {
+            display: none;
+            font-size: 1.5em;
+            color: #ffb3b3;
+            margin-top: 20px;
+            animation: fadeInOut 4s ease-in-out;
+        }
+
+        /* Make a Wish Section Styling */
+        .wish-section {
+            margin-top: 30px;
+            color: #ffb3b3;
+            font-size: 1.2em;
+        }
+
+        .wish-section input {
+            padding: 10px;
+            font-size: 1em;
+            border: 2px solid #ffde59;
+            border-radius: 5px;
+            margin-top: 10px;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffde59;
+        }
+
+        .wish-section input::placeholder {
+            color: #ffde59;
+            opacity: 0.8;
+        }
+
+        .wish-section button {
+            padding: 10px 20px;
+            font-size: 1.1em;
+            color:#0b032d;
+            background-color: #ffde59;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .wish-section button:hover {
+            background-color: #ffc107;
+        }
+
+        .wish-message {
+            display: none;
+            font-size: 1.3em;
+            color: #ffb3b3;
+            margin-top: 20px;
+            animation: fadeInOut 4s ease-in-out;
+        }
+
+        @keyframes sparkle {
+            from { text-shadow: 0 0 10px #ffde59, 0 0 20px #ffde59; }
+            to { text-shadow: 0 0 20px #ffde59, 0 0 30px #ffc107; }
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Full-screen video background -->
+    <video class="video-bg" src="diwalibg.mp4" autoplay loop muted></video>
+    <div class="video-overlay"></div>
+
+    <div class="container">
+        <h1>🎆 Happy Diwali 🎇</h1>
+        <p>May your life be as colorful, sparkling, and magical as the lights of Diwali!</p>
+
+        <button onclick="displayMessage()">Celebrate</button>
+        <div id="message" class="message">Wishing you happiness, prosperity, and joy!</div>
+
+        <!-- "Make a Wish" Section -->
+        <div class="wish-section">
+            <p>Make a wish this Diwali:</p>
+            <input type="text" id="wishInput" placeholder="Enter your wish here">
+            <button onclick="makeWish()">Make a Wish</button>
+            <div id="wishMessage" class="wish-message"></div>
+        </div>
+
+        <!-- Background Music -->
+        <audio id="bg-music" src="diwali_music.mp3" autoplay loop></audio>
+
+        <!-- Firecracker Sound -->
+        <audio id="firecracker-sound" src="firecracker.mp3"></audio>
+    </div>
+
+    <script>
+        function displayMessage() {
+            document.getElementById("message").style.display = "block";
+            document.getElementById("firecracker-sound").play();
+        }
+
+        function makeWish() {
+            const wishInput = document.getElementById("wishInput").value;
+            const wishMessage = document.getElementById("wishMessage");
+
+            if (wishInput) {
+                wishMessage.innerHTML = `✨ Your wish for "${wishInput}" is sent to God! ✨`;
+                wishMessage.style.display = "block";
+                setTimeout(() => {
+                    wishMessage.style.display = "none";
+                }, 4000);
+                document.getElementById("wishInput").value = "";
+            } else {
+                wishMessage.innerHTML = "Please enter a wish!";
+                wishMessage.style.display = "block";
+                setTimeout(() => {
+                    wishMessage.style.display = "none";
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>
